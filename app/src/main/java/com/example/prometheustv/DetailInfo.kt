@@ -6,4 +6,3 @@ data class DetailInfo(
     val imageResId: Int,
     val additionalImageResId: Int
 )
-

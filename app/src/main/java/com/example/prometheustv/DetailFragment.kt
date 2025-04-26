@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.bumptech.glide.Glide
 
 class DetailFragment : Fragment() {
 
@@ -68,30 +67,26 @@ class DetailFragment : Fragment() {
         )
     )
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_detail, container, false)
 
-        // Get the title from the arguments
         val title = arguments?.getString("TITLE")
 
-        // Find the views
         val detailTitle: TextView = view.findViewById(R.id.detail_title)
         val detailImage: ImageView = view.findViewById(R.id.detail_image)
         val detailInfo: TextView = view.findViewById(R.id.detail_info)
         val detailAdditionalImage: ImageView = view.findViewById(R.id.detail_additional_image)
 
-        // Set the title in the view
         detailTitle.text = title
 
-        // Set the information text and images based on the title
         val detail = infoMap[title]
         if (detail != null) {
-            detailInfo.text = "${detail.description}\n\n${detail.additionalInfo}"
+            // Mostrar el texto formateado con bullets si contiene "-"
+            val formattedInfo = "${detail.description}\n\n${detail.additionalInfo.replace("-", "•")}"
+            detailInfo.text = formattedInfo
             detailImage.setImageResource(detail.imageResId)
             detailAdditionalImage.setImageResource(detail.additionalImageResId)
         } else {
