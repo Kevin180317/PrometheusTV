@@ -34,19 +34,19 @@ class MainFragment : BrowseSupportFragment() {
         // ✅ Mapa de categorías a sus ítems
         val categorizedItems = mapOf(
             "Información general" to listOf(
-                "Acerca de nosotros" to R.drawable.skeleton,
-                "WIFI" to R.drawable.skeleton,
-                "Conoce a tu host" to R.drawable.skeleton
+                "Acerca de nosotros" to R.drawable.c1,
+                "WIFI" to R.drawable.c2,
+                "Conoce a tu host" to R.drawable.c3
             ),
             "Estancia" to listOf(
-                "Check in & Check out" to R.drawable.skeleton,
-                "Reglas de la casa" to R.drawable.skeleton,
-                "CheckList de salida" to R.drawable.skeleton
+                "Check in & Check out" to R.drawable.c4,
+                "Reglas de la casa" to R.drawable.c5,
+                "CheckList de salida" to R.drawable.c6
             ),
             "Explora Mazatlán" to listOf(
-                "Que puedo hacer en Mazatlán?" to R.drawable.skeleton,
-                "Restaurantes" to R.drawable.skeleton,
-                "Bares" to R.drawable.skeleton
+                "Que puedo hacer en Mazatlán?" to R.drawable.c7,
+                "Restaurantes" to R.drawable.c8,
+                "Bares" to R.drawable.c9
             )
         )
 
