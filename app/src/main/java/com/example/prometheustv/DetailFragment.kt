@@ -23,7 +23,7 @@ class DetailFragment : Fragment() {
             "Check in & Check out" -> CheckInFragment()
             "Reglas de la casa" -> RulesFragment()
             "CheckList de salida" -> ChecklistFragment()
-            "Que puedo hacer en Mazatlán?" -> ActivitiesFragment()
+            "Que hacer en Mazatlán?" -> ActivitiesFragment()
             "Restaurantes" -> RestaurantsFragment()
             "Bares" -> BarsFragment()
             else -> null

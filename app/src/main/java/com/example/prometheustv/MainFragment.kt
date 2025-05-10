@@ -36,7 +36,7 @@ class MainFragment : BrowseSupportFragment() {
             "Información general" to listOf(
                 "Acerca de nosotros" to R.drawable.c1,
                 "WIFI" to R.drawable.c2,
-                "Conoce a tu host" to R.drawable.c6
+                "Conoce a tu host" to R.drawable.hos
             ),
             "Estancia" to listOf(
                 "Check in & Check out" to R.drawable.c8,
@@ -44,7 +44,7 @@ class MainFragment : BrowseSupportFragment() {
                 "CheckList de salida" to R.drawable.c7
             ),
             "Explora Mazatlán" to listOf(
-                "Que puedo hacer en Mazatlán?" to R.drawable.c5,
+                "Que hacer en Mazatlán?" to R.drawable.c5,
                 "Restaurantes" to R.drawable.c3,
                 "Bares" to R.drawable.c9
             )

@@ -15,14 +15,13 @@ class WifiFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_wifi, container, false)
 
-        val title = view.findViewById<TextView>(R.id.about_title)
-        val description = view.findViewById<TextView>(R.id.about_description)
-        val image = view.findViewById<ImageView>(R.id.about_image)
+        val title = view.findViewById<TextView>(R.id.wifi_title)
+        val wifi = view.findViewById<ImageView>(R.id.wifi_connection)
+        val image = view.findViewById<ImageView>(R.id.wifi_image)
 
-        title.text = "Wifi"
-        description.text  = "Este es tu wifi"
-        image.setImageResource(R.drawable.cardview)
-
+        image.setImageResource(R.drawable.wifibanner)
+        title.text = "WIFI"
+        wifi.setImageResource(R.drawable.wifi)
         return view
     }
 }

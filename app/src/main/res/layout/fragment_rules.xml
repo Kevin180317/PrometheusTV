@@ -10,28 +10,25 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <!-- Título centrado para Reglas de la Casa -->
         <TextView
-            android:id="@+id/about_title"
+            android:id="@+id/rules_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="24sp"
             android:textStyle="bold"
             android:textColor="@android:color/black"
+            android:gravity="center"
             android:layout_marginBottom="16dp" />
 
+        <!-- Listado de reglas -->
         <TextView
-            android:id="@+id/about_description"
+            android:id="@+id/rules_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="16dp" />
 
-        <ImageView
-            android:id="@+id/about_image"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="16dp"
-            android:scaleType="centerCrop"
-            android:contentDescription="@null"/>
     </LinearLayout>
 </ScrollView>
