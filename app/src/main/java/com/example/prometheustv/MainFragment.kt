@@ -1,9 +1,11 @@
 package com.example.prometheustv
 
+import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
+import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
 import androidx.leanback.app.BrowseSupportFragment
 import androidx.leanback.widget.*
@@ -14,48 +16,70 @@ class MainFragment : BrowseSupportFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // ✅ Título que aparece arriba del menú izquierdo
+        // Título
         title = "Departamento Tortuga"
 
-        // ✅ Fondo de la pantalla
-        val backgroundDrawable = ContextCompat.getDrawable(requireContext(), R.drawable.background)
-        backgroundDrawable?.let {
-            view.background = it
+        // Fondo de la pantalla
+        view.setBackgroundColor(Color.parseColor("#4b5949"))
+
+        // Fondo del menú lateral
+        brandColor = Color.parseColor("#687368")
+
+        headersState = HEADERS_ENABLED
+
+        // Color textos Menu Lateral y Title
+        view.post {
+            fun setHeaderColors(v: View) {
+                if (v is TextView) {
+                    // Detecta si es el título por tamaño de texto o contenido
+                    if (v.text == title) {
+                        v.setTextColor(Color.WHITE)  // título en blanco
+                        v.setTypeface(v.typeface, Typeface.BOLD) //
+                    } else {
+                        v.setTextColor(Color.WHITE)  // headers en negro
+                        v.setTypeface(v.typeface, Typeface.BOLD) //
+                    }
+                } else if (v is ViewGroup) {
+                    for (i in 0 until v.childCount) {
+                        setHeaderColors(v.getChildAt(i))
+                    }
+                }
+            }
+            setHeaderColors(view)
         }
 
-        // ✅ Adapter principal de rows
+        // Adapter principal de rows
         val rowsAdapter = ArrayObjectAdapter(ListRowPresenter())
 
-        // ✅ Agregamos un encabezado visual tipo "intro" antes de las categorías
+        // Encabezado visual tipo "intro"
         val headerIntro = HeaderItem(9999L, "Menu Principal")
-        val emptyAdapter = ArrayObjectAdapter(CardPresenter()) // sin ítems
+        val emptyAdapter = ArrayObjectAdapter(CardPresenter())
         rowsAdapter.add(ListRow(headerIntro, emptyAdapter))
 
-        // ✅ Mapa de categorías a sus ítems
+        // Categorías y sus items
         val categorizedItems = mapOf(
             "Información general" to listOf(
-                "Acerca de nosotros" to R.drawable.c1,
-                "WIFI" to R.drawable.c2,
-                "Conoce a tu host" to R.drawable.hos
+                "Acerca de nosotros" to R.drawable.dt_acerca,
+                "WIFI" to R.drawable.dt_host,
+                "Conoce a tu host" to R.drawable.dt_wifi
             ),
             "Estancia" to listOf(
-                "Check in & Check out" to R.drawable.c8,
-                "Reglas de la casa" to R.drawable.c4,
-                "CheckList de salida" to R.drawable.c7
+                "Check in & Check out" to R.drawable.dt_checkin,
+                "Reglas de la casa" to R.drawable.dt_reglas,
+                "CheckList de salida" to R.drawable.dt_checklist
             ),
             "Explora Mazatlán" to listOf(
-                "Que hacer en Mazatlán?" to R.drawable.c5,
-                "Restaurantes" to R.drawable.c3,
-                "Bares" to R.drawable.c9
+                "Que hacer en Mazatlán?" to R.drawable.dt_que_hacer,
+                "Restaurantes" to R.drawable.dt_restaurante,
+                "Bares" to R.drawable.dt_bares
             )
         )
 
-        // ✅ Crear filas con tarjetas por categoría
+        // Crear filas
         var headerId = 0L
         for ((category, items) in categorizedItems) {
             val listRowAdapter = ArrayObjectAdapter(CardPresenter())
             listRowAdapter.addAll(0, items)
-
             val header = HeaderItem(headerId++, category)
             rowsAdapter.add(ListRow(header, listRowAdapter))
         }
@@ -63,7 +87,6 @@ class MainFragment : BrowseSupportFragment() {
         adapter = rowsAdapter
     }
 
-    // ✅ Presentador de cada tarjeta
     class CardPresenter : Presenter() {
         override fun onCreateViewHolder(parent: ViewGroup): ViewHolder {
             val cardView = ImageCardView(parent.context)
@@ -78,12 +101,11 @@ class MainFragment : BrowseSupportFragment() {
             cardView.titleText = title
             cardView.setMainImageDimensions(376, 390)
 
-            // Cargar imagen
+
             Glide.with(cardView.context)
                 .load(imageResId)
                 .into(cardView.mainImageView)
 
-            // Click: ir a detalle
             cardView.setOnClickListener {
                 val context = cardView.context as FragmentActivity
                 val fragment = DetailFragment().apply {
