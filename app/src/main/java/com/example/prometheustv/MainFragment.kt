@@ -100,7 +100,7 @@ class MainFragment : BrowseSupportFragment() {
             val cardView = viewHolder.view as ImageCardView
             cardView.titleText = title
             cardView.setMainImageDimensions(376, 390)
-
+            cardView.setInfoAreaBackgroundColor(Color.parseColor("#89958d"))
 
             Glide.with(cardView.context)
                 .load(imageResId)
